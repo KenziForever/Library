@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
+
 def about_me(request):
     if request.method == 'GET':
         return HttpResponse('🙂Меня зовут Аймир мне 14 лет👌'
