@@ -1,9 +1,21 @@
 from urllib import request
 from datetime import datetime
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from . import models
 
 
+def books_list_view(request):
+    if request.method == 'GET':
+        book_list = models.Books.objects.all()
+        context = {'book_list': book_list}
+        return render(request, template_name='book.html', context=context)
+
+def books_view(request, id):
+    if request.method == 'GET':
+        book_id = get_object_or_404(models.Books, id=id)
+        context = {'book_id': book_id}
+        return render(request, template_name='book_detail.html', context=context)
 
 def about_me(request):
     if request.method == 'GET':
