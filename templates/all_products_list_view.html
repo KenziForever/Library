@@ -1,0 +1,22 @@
+{% include 'header.html' %}
+<div class="container mt-5">
+
+    <!-- Кнопки-ссылки -->
+    <div class="d-flex justify-content-around mb-4">
+        <a href="{% url 'Old_tags' %}" class="btn btn-primary">#Для старых</a>
+        <a href="{% url 'News_tags' %}" class="btn btn-success">#Для молодых</a>
+        <a href="{% url 'Baby_tags' %}" class="btn btn-warning">#Для детей</a>
+    </div>
+
+    {% for i in all_products %}
+    <div class="card" style="width: 18rem;">
+        <img src="https://img.freepik.com/free-vector/hand-drawn-winter-clothes-essentials-collection_23-2149138519.jpg?semt=ais_hybrid" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ i.title }}</h5>
+            <p class="card-text">{{ i.price }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% include 'footer.html' %}
