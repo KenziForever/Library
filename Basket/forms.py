@@ -1,7 +1,8 @@
 from django import forms
-from . import models
+from .models import Order
+
 
 class OrderForm(forms.ModelForm):
     class Meta:
-        model = models.Order
-        fields = "__all__"
+        model = Order
+        fields = ['name', 'phone_number', 'email', 'book']

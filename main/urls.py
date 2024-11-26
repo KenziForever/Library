@@ -6,11 +6,9 @@ from main_page import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('About_me/', views.about_me, name="about_me"),
-    path('My_pets/', views.about_my_pets, name='My_pets'),
-    path('Time/', views.system_time, name='Time'),
     path('', include('main_page.urls')),
     path('', include('hashtags.urls')),
+    path('', include('Basket.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,

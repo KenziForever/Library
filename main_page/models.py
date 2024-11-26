@@ -34,6 +34,7 @@ class Books(models.Model):
 
 
 class ReviewFilm(models.Model):
+    text = models.TextField(null=True)
     review_films = models.ForeignKey(Books, on_delete=models.CASCADE,
                                      related_name='review_films')
     created_at = models.DateField(auto_now_add=True)

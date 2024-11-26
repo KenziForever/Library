@@ -1,35 +1,54 @@
-from urllib import request
-from datetime import datetime
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+import datetime
+from django.views import generic
 from . import models
+from .forms import CommentForm
+from django.views import View
 
 
-def books_list_view(request):
-    if request.method == 'GET':
-        book_list = models.Books.objects.all()
-        context = {'book_list': book_list}
-        return render(request, template_name='book.html', context=context)
+class BookListView(generic.ListView):
+    template_name = 'book.html'
+    context_object_name = 'books'
+    model = models.Books
 
-def books_view(request, id):
-    if request.method == 'GET':
-        book_id = get_object_or_404(models.Books, id=id)
-        context = {'book_id': book_id}
-        return render(request, template_name='book_detail.html', context=context)
+    def get_queryset(self):
+        return models.Books.objects.all()
 
-def about_me(request):
-    if request.method == 'GET':
+
+class BookDetailView(generic.DetailView):
+    template_name = 'book_detail.html'
+    model = models.Books
+    context_object_name = 'book_id'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.book = self.object
+            comment.save()
+            return redirect('book-detail', pk=self.object.pk)  # Редирект на ту же страницу
+        return self.get(request, *args, **kwargs)
+
+class AboutMeView(View):
+    def get(self, request):
         return HttpResponse('🙂Меня зовут Аймир мне 14 лет👌'
                             'учусь в 66 школе, люблю играть '
                             'неплохо учусь много друзей🤗')
 
-def about_my_pets(request):
-    if request.method == 'GET':
+class AboutMyPetsView(View):
+    def get(self, request):
         return HttpResponse('🙂В данный момент нет питомца '
                             'раньше была собакa породы "Алабай"'
                             'люблю кошек, собак и хомячков😶‍🌫️')
 
-def system_time(request):
-    if request.method == 'GET':
+class SystemTimeView(View):
+    def get(self, request):
         return HttpResponse(f'В данный момент время {datetime.now()}👍👍👍')
 
