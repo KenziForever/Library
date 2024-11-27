@@ -20,12 +20,12 @@
     <!-- Блок для комментариев -->
     <div class="comment-section">
         <h5>Комментарии</h5>
-        <p>Общий рейтинг книги - {{ film_id.average_rating|default:'Нет рейтинга' }}</p>
+        <p>Общий рейтинг книги - {{ book_id.average_rating|default:'Нет рейтинга' }}</p>
         {% for i in book_id.review_films.all %}
         <div class="comment">
             <p> {{ i.created_at }}:{{ i.description }} <strong>Оценка: </strong>{{ i.mark }}</p>
         </div>
-     {% endfor %}
+        {% endfor %}
     </div>
 </div>
 {% include 'footer.html' %}

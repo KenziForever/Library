@@ -7,29 +7,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('Basket', '0001_initial'),
-        ('main_page', '0003_reviewfilm_text'),
+        ("Basket", "0001_initial"),
+        ("main_page", "0003_reviewfilm_text"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='order',
-            name='book',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='main_page.books'),
+            model_name="order",
+            name="book",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="orders",
+                to="main_page.books",
+            ),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='email',
+            model_name="order",
+            name="email",
             field=models.EmailField(max_length=254),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='name',
+            model_name="order",
+            name="name",
             field=models.CharField(max_length=100),
         ),
         migrations.AlterField(
-            model_name='order',
-            name='phone_number',
+            model_name="order",
+            name="phone_number",
             field=models.CharField(max_length=100),
         ),
     ]

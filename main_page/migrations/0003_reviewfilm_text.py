@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main_page', '0002_reviewfilm'),
+        ("main_page", "0002_reviewfilm"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='reviewfilm',
-            name='text',
+            model_name="reviewfilm",
+            name="text",
             field=models.TextField(null=True),
         ),
     ]
