@@ -1,0 +1,18 @@
+{% include "header.html" %}
+
+{% block content %}
+  <h2>All Devices</h2>
+  <div class="device-list">
+    {% for device in devices %}
+      <div class="device-card">
+        <img src="{{ device.image.url }}" alt="{{ device.name }}">
+        <h3>{{ device.name }}</h3>
+        <p>Category: {{ device.category.name }}</p>
+        <p>Price: ${{ device.price }}</p>
+        <a href="{% url 'device_detail' pk=device.id %}">View Details</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% include 'footer.html'

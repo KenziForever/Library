@@ -16,7 +16,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 if os.environ.get("DEBUG") == "on":
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     "Basket",
     "hashtags",
     "debug_toolbar",
+    "django_extensions",
+    "mobile_devices",
 ]
 
 MIDDLEWARE = [
@@ -46,7 +48,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    # "django_extensions",
 ]
 
 ROOT_URLCONF = "main.urls"

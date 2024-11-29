@@ -2,14 +2,14 @@
 <div class="container mt-5">
     <!-- Кнопки-ссылки -->
     <div class="d-flex justify-content-around mb-4">
-        <a href="#Old" class="btn btn-primary">#Для старых</a>
-        <a href="#News" class="btn btn-success">#Для молодых</a>
-        <a href="#Baby" class="btn btn-warning">#Для детей</a>
+        <a href="{% url 'Old_tags' %}" class="btn btn-primary">#Для старых</a>
+        <a href="{% url 'News_tags' %}" class="btn btn-success">#Для молодых</a>
+        <a href="{% url 'Baby_tags' %}" class="btn btn-warning">#Для детей</a>
     </div>
 
     {% for i in Baby %}
     {% load cache %}
-    {% cache 600 products_list %}
+    {% cache 600 Baby %}
     <div class="card" style="width: 18rem;">
         <img src="https://img.freepik.com/free-vector/hand-drawn-winter-clothes-essentials-collection_23-2149138519.jpg?semt=ais_hybrid"
              class="card-img-top" alt="...">
